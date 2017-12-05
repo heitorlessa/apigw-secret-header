@@ -1,0 +1,22 @@
+{
+  "name": "apigw-secret-header",
+  "version": "1.0.0",
+  "description": "Creates HMAC out of a secret stored in SSM Parameter Store with whatever input data it receives",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heitorlessa/apigw-secret-header.git"
+  },
+  "author": "Heitor Lessa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heitorlessa/apigw-secret-header/issues"
+  },
+  "homepage": "https://github.com/heitorlessa/apigw-secret-header#readme",
+  "dependencies": {
+    "aws-sdk": "^2.163.0"
+  }
+}
