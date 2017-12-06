@@ -1,6 +1,6 @@
 {
   "name": "apigw-secret-header",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Creates HMAC out of a secret stored in SSM Parameter Store with whatever input data it receives",
   "main": "index.js",
   "scripts": {
