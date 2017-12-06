@@ -1,9 +1,12 @@
 'use strict';
 
-const crypto = require('crypto');
-const config = require('./config.js')
-const AWS = require('aws-sdk');
+const config = {
+    ssm_parameter: "/demo/hmac-shared-secret" || process.env.SSM_PARAMETER,
+    aws_region: "us-east-1" || process.env.AWS_REGION
+}
 
+const crypto = require('crypto');
+const AWS = require('aws-sdk');
 AWS.config.update({ region: config.aws_region });
 const SSM = new AWS.SSM();
 
@@ -13,9 +16,9 @@ const getSecret = (callback) => {
         Name: config.ssm_parameter
     }
 
-    let shared_secret = SSM.getParameter(params, function (err, data) {
+    SSM.getParameter(params, function (err, data) {
         if (err) callback(err, null);
-        else callback(null, data);
+        else callback(null, data.Parameter.Value);
     });
 }
 
@@ -26,7 +29,7 @@ module.exports = {
             if (err) {
                 callback(err, null);
             } else {
-                let hash = crypto.createHmac('sha512', secret.Parameter.Value)
+                let hash = crypto.createHmac('sha512', secret)
                     .update(data)
                     .digest('hex')
                 callback(null, hash);
